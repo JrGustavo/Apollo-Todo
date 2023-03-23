@@ -13,9 +13,11 @@ getRandomNumber(): number {
     return Math.random() *100;
     }
 
-    @Query (() => Int, { name: 'randmonFromZeroTo', description: 'From Zero to argument To'})
-    getRandmonFromZeroTo( @Args('to', {type: () => Int}) to: number ): number {
-        return Math.floor(Math.random() *10);
+    @Query (() => Int, { name: 'randmonFromZeroTo', description: 'From Zero to argument To (default 6'})
+    getRandmonFromZeroTo(
+        @Args('to', {nullable: true, type: () => Int}) to: number = 6
+): number {
+        return Math.floor(Math.random() * to);
     }
 
 }
